@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Día de la Libertad del Software 2013 - Escuela Urquiza</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">Estás usando un navegador <strong>obsoleto</strong>. Si querés, <a href="http://browsehappy.com/">actualizate</a>.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div id="contenedor">
+            <div id="fijo">
+                <header>
+                    <img src="img/encabezado.png" alt="encabezado">
+                    <h1>Día de la Libertad del Software 2013</h1>
+                    <h2>Escuela Urquiza - Nivel terciario</h2>
+                    <!-- <img src="img/logo-urq.png" alt="Logo Urquiza"> -->               
+                </header>
+                <nav>
+                    <ul>
+                        <li><a href="#">Qué es</a></li>
+                        <li><a href="#dqst">Actividades</a></li>
+                        <li><a href="#" onclick="mostrarFormulario(true);">¡Inscribite!</a></li>
+                        <li><a href="#inscribite">Difusión</a></li>
+                        <li><a href="#difusion">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <section id="rectangulos">
+                <article id="dqst">
+                    <img src="img/1.png" alt="De qué se trata">
+                    <h1>¿De qué se trata?</h1>
+                    <p>El Día de la Libertad del Software es una celebración anual sobre el Software Libre.
+                    Este año, hay un equipo en nuestro terciario que se suma a cientos de equipos organizando
+                    el Software Freedom Day en diferentes países y ciudades.
+                    <a href="http://www.softwarefreedomday.org/" target="blank">Saber más...</a></p>
+                </article>
+                <article id="actividades">
+                    <img src="img/2.png" alt="Actividades">
+                    <h1>Actividades</h1>
+                    <p>El <strong>jueves 19 de septiembre, desde las 18:30</strong>, se realizará el SFD en
+                    nuestro terciario. Próximamente informaremos por este medio el cronograma de actividades.</p>
+                </article>
+                <article id="inscribite">
+                    <img src="img/3.png" alt="¡Inscribite!">
+                    <h1>Inscribite</h1>
+                    <p>Para ayudarnos a organizarnos mejor, necesitamos que nos avises si vas a poder venir. La
+                    inscripción es gratuita y fácil, <a href="#" onclick="mostrarFormulario(true);">hacé clic acá</a>.</p>
+                </article>
+                <article id="difusion">
+                    <img src="img/4.png" alt="Difusión">
+                    <h1>¡Ayudanos a difundir el evento!</h1>
+                    <p>¿En tu curso tienen un blog o un grupo en Facebook? Si podés poner
+                    <a href="banners.zip">estos banners</a> ahí, para 
+                    que todos se enteren, te lo agradecemos.</p>
+                </article>
+                <article id="contacto">
+                    <img src="img/5.png" alt="Contacto">
+                    <h1>Contacto</h1>
+                    <p>¿Dudas? ¿Consultas? Buscanos en la escuela o escribinos a <strong>jmarquez@escuelaurquiza.edu.ar</strong></p>
+                </article>
+                <article id="formulario">
+                    <img id="cerrar" src="img/cerrar.png" onclick="mostrarFormulario(false);">
+                    <img src="img/3.png" alt="¡Inscribite!">
+                    <h1>Inscribite</h1>
+                    <form id="f" action="inscripcion.php" method="post" onsubmit="return enviarDatos(this)">
+                        <table>
+                            <tr><td class="l"><label for="nombre" id="nombrelbl">Nombre: </label></td>
+                            <td class="i"><input type="text" name="nombre"></td></tr>
+                            <tr><td class="l"><label for="apellido" id="apellidolbl">Apellido: </label></td>
+                            <td class="i"><input type="text" name="apellido"></td></tr>
+                            <tr><td class="l"><label for="curso" id="cursolbl">Curso: </label></td>
+                            <td class="i">
+                                <select name="curso" onchange="divisiones(this);">
+                                    <option value="0">--Elegir--</option>
+                                    <option value="1">1º</option>
+                                    <option value="2">2º</option>
+                                    <option value="3">3º</option>
+                                    <option value="D">Docente</option>
+                                    <option value="X">Otro</option>
+                                </select>
+                                <select name="division" id="division" disabled style="display: none;"></select>
+                            </td></tr>
+                            <tr><td class="l"><label for="correo" id="correolbl">Correo: </label></td>
+                            <td class="i"><input type="email" name="correo" onkeyup="mail(this);"></td></tr>
+                            <tr><td class="l"><input type="checkbox" name="noticias" id="noticias" disabled></td>
+                            <td class="i"><label for="noticias">Recibir noticias en mi correo</label></td></tr>
+                            <tr><td colspan="2"><input type="submit" value="Inscribirse"></td></tr>                            
+                        </table>
+                    </form>
+                </article>
+            </section>
+            <footer>
+                <p><strong>Algunos derechos reservados</strong>
+                - El contenido de esta página está bajo una licencia
+                 <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="blank">CC-BY-SA</a>.</p>
+            </footer>
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js?v=1"></script>     
+    </body>
+</html>
