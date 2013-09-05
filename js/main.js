@@ -34,11 +34,13 @@ function mostrarFormulario(mostrar) {
             document.getElementById("formulario").style.display="block";
             document.body.style.backgroundColor="#333333";
             document.getElementById("fijo").style.backgroundColor="#333333";
+            document.getElementsByTagName("html")[0].style.overflow = "hidden";
         }
         else {
             document.getElementById("formulario").style.display="none";
             document.body.style.backgroundColor="#f1f1f1";
             document.getElementById("fijo").style.backgroundColor="#f1f1f1";
+            document.getElementsByTagName("html")[0].style.overflow = "auto";
         }
 }
 
@@ -71,6 +73,6 @@ function enviarDatos(f) {
     }
     else {
         document.getElementById("correolbl").style.color="black";
-    }
+    }    
     return result;
 }
