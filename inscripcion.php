@@ -1,9 +1,5 @@
 <?php
-function conectar() {
-    $conexion = mysqli_connect("servidor","usuario","contraseña","bd") 
-    or die("¡No se ha podido establecer la conexión con el servidor!");
-    return $conexion;
-}
+require('funciones2.php');
 if(!isset($_POST)) die("Error");
 if(!isset($_POST['nombre'])||$_POST['nombre']==""||
    !isset($_POST['apellido'])||$_POST['apellido']==""||
@@ -16,14 +12,30 @@ else {$div=(int) $_POST['division'];}
 if(!isset($_POST['noticias'])) {$not=0;}
 elseif($_POST['noticias']=="on") {$not=1;}
 else {$not=0;}    
-$con=conectar();
+
+$cantidad=cuantosHay();
+
+if($cantidad>50) {
+        $not+=2;
+}
 $sql="CALL altasfd('".$_POST["nombre"]."','".$_POST["apellido"]."','";
 $sql.=$_POST["curso"]."',$div,'".$_POST["correo"]."',$not)";
+$con=conectar();
 if(mysqli_query($con,$sql)) {
-    $mensaje="Tu inscripción se realizó correctamente. ¡Gracias!";
+    $cantNueva=$cantidad+1;        
+    $mensaje="<h1>Ya somos $cantNueva inscriptos</h1>";
+    if($cantidad>50) {
+        $mensaje.="<p><span style='color: red;'>La capacidad del auditorio ya ha sido superada.</span><br>";
+        $mensaje.="Quedás inscripto/a para la próxima actividad que realizaremos próximamente. ¡Gracias!</p>";
+    }
+    else {
+        
+        $mensaje.="<p>Tu inscripción se realizó correctamente.<br>";
+        $mensaje.="Nos vemos el jueves a las 18:30hs. ¡Gracias!</p>";
+    }
 }
 else {
-    $mensaje="Hubo un error en la inscripción. Intentá más tarde.";
+    $mensaje="<h1>Error</h1><p>Hubo un error en la inscripción. Intentá más tarde.</p>";
 }
 ?>
 <!DOCTYPE html>
@@ -70,9 +82,8 @@ else {
             </div>
             <section id="rectangulos">                
                 <article id="inscribite">
-                    <img src="img/3.png" alt="¡Inscribite!">
-                    <h1>Te inscribiste</h1>
-                    <p><?php echo $mensaje;?></p>
+                    <img src="img/3.png" alt="¡Inscribite!">                    
+                    <?php echo $mensaje;?>
                     <p><a href="index.html">Volver</a></p>
                 </article>
             </section>
